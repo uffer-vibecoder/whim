@@ -28,7 +28,13 @@ Every "purchase" adds to a persistent **"money saved by feeling this instead"** 
 - **canvas-confetti** for celebrations
 - Web Audio API for synthesized blips/cha-ching (no audio assets)
 - Cart persists in `localStorage`; the active order rides in `sessionStorage`
-- Product "images" are emoji on gradient tiles — zero image assets, fully offline
+- Product photos are curated [Unsplash](https://unsplash.com) images (free license), with
+  an emoji-on-gradient fallback if one fails to load
+
+## Docs
+
+- [ROADMAP.md](ROADMAP.md) — what's shipped and what's next (accounts, drops, monetization)
+- [docs/claude-design-prompt.md](docs/claude-design-prompt.md) — paste-ready brief for designing in Claude
 
 ## Run it
 

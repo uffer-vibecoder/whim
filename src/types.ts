@@ -13,6 +13,7 @@ export type Product = {
   perks: string[];
   secondhand?: boolean; // a one-of-a-kind thrifted find
   condition?: string; // flavor text for thrifted items, e.g. "Gently loved"
+  image?: string; // Unsplash photo id, e.g. "photo-1602143407151-7111542de6e8"
 };
 
 export type CartLine = {

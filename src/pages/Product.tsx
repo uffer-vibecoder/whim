@@ -4,6 +4,7 @@ import { productById } from "../data/products";
 import { reviewsFor } from "../data/reviews";
 import { useCart } from "../store/CartContext";
 import { playPop, popConfetti } from "../lib/dopamine";
+import ProductImage from "../components/ProductImage";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -42,7 +43,7 @@ export default function ProductPage() {
 
       <div className="pdp">
         <div className="hero-img popin" style={{ background: product.bg }}>
-          {product.emoji}
+          <ProductImage product={product} w={900} h={900} emojiSize={150} />
         </div>
 
         <div>

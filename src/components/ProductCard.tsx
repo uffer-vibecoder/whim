@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import type { Product } from "../types";
 import { useCart } from "../store/CartContext";
 import { flyToCart, playPop, popConfetti } from "../lib/dopamine";
+import ProductImage from "./ProductImage";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { add } = useCart();
@@ -34,7 +35,7 @@ export default function ProductCard({ product }: { product: Product }) {
           discount > 0 && <span className="deal">-{discount}%</span>
         )}
         <span className="heart">🤍</span>
-        <span>{product.emoji}</span>
+        <ProductImage product={product} w={600} h={480} emojiSize={76} />
       </div>
       <div className="body">
         <div className="name">{product.name}</div>
