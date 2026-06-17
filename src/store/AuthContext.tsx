@@ -31,7 +31,13 @@ type AuthValue = {
   signedIn: boolean;
   profile: Profile | null;
   history: Daydream[];
-  /** Supabase mode: emails a magic link. Returns true if sent. */
+  /**
+   * Primary sign-in: instant account with just a display name. Uses a real
+   * Supabase anonymous account when configured, else a local browser profile.
+   * Returns an error message, or null on success.
+   */
+  startProfile: (name: string) => Promise<string | null>;
+  /** Optional upgrade: email a magic link to sync across devices. Returns true if sent. */
   signInWithEmail: (email: string) => Promise<boolean>;
   /** Local mode: claim a browser profile with a display name. */
   signInLocal: (name: string) => void;
@@ -133,6 +139,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const startProfile = useCallback(
+    async (name: string): Promise<string | null> => {
+      const display = name.trim() || "friend";
+      if (mode === "local" || !supabase) {
+        signInLocal(display);
+        return null;
+      }
+      const { data, error } = await supabase.auth.signInAnonymously();
+      if (error) {
+        // Most common: the "Allow anonymous sign-ins" toggle is off in the dashboard.
+        return /disabled/i.test(error.message)
+          ? "Anonymous sign-ins are turned off in Supabase. Enable them under Authentication → Sign In / Providers."
+          : error.message;
+      }
+      const uid = data.user?.id;
+      if (uid) {
+        await supabase
+          .from("profiles")
+          .upsert({ id: uid, display_name: display, avatar_emoji: "🛒" });
+        await loadSupabaseData(uid);
+      }
+      return null;
+    },
+    [mode, signInLocal, loadSupabaseData]
+  );
+
   const signOut = useCallback(async () => {
     if (mode === "supabase" && supabase) {
       await supabase.auth.signOut();
@@ -191,12 +223,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signedIn: !!profile,
       profile,
       history,
+      startProfile,
       signInWithEmail,
       signInLocal,
       signOut,
       recordDaydream,
     }),
-    [mode, ready, profile, history, signInWithEmail, signInLocal, signOut, recordDaydream]
+    [
+      mode,
+      ready,
+      profile,
+      history,
+      startProfile,
+      signInWithEmail,
+      signInLocal,
+      signOut,
+      recordDaydream,
+    ]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

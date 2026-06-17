@@ -5,11 +5,13 @@ import { formatWindow } from "../lib/time";
 import { playConfirm } from "../lib/dopamine";
 
 export default function Account() {
-  const { mode, signedIn, profile, history, signInWithEmail, signInLocal, signOut } = useAuth();
+  const { mode, signedIn, profile, history, startProfile, signInWithEmail, signOut } = useAuth();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [startErr, setStartErr] = useState<string | null>(null);
+  const [showEmail, setShowEmail] = useState(false);
   const [urlError, setUrlError] = useState<string | null>(null);
 
   // Surface any auth error Supabase appended to the redirect (query or hash).
@@ -21,6 +23,15 @@ export default function Account() {
     const err = params.get("error_description") || params.get("error");
     if (err) setUrlError(err.replace(/\+/g, " "));
   }, []);
+
+  async function handleStart() {
+    playConfirm();
+    setStartErr(null);
+    setBusy(true);
+    const err = await startProfile(name);
+    setBusy(false);
+    setStartErr(err);
+  }
 
   async function handleEmail() {
     if (!email.trim()) return;
@@ -42,61 +53,71 @@ export default function Account() {
             Save your daydream history and your "money saved by not buying" — across every visit.
           </p>
 
-          {urlError && (
+          {(urlError || startErr) && (
             <div
               className="strike-note"
               style={{ justifyContent: "center", marginBottom: 14, color: "var(--pink)" }}
             >
-              ⚠️ {urlError}
+              ⚠️ {startErr || urlError}
             </div>
           )}
 
+          {/* Primary: instant profile, just a name. */}
+          <div style={{ marginTop: 6, textAlign: "left" }}>
+            <label className="field">
+              <span>Pick a name</span>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="dopamine_enjoyer"
+                onKeyDown={(e) => e.key === "Enter" && handleStart()}
+              />
+            </label>
+            <button className="btn primary big full" disabled={busy} onClick={handleStart}>
+              {busy ? "Starting…" : "🎉 Start my whim profile"}
+            </button>
+          </div>
+
           {mode === "supabase" ? (
-            sent ? (
-              <div className="strike-note" style={{ justifyContent: "center", marginTop: 18 }}>
-                📬 Magic link sent! Check your email to finish signing in.
-              </div>
-            ) : (
-              <div style={{ marginTop: 16, textAlign: "left" }}>
-                <label className="field">
-                  <span>Email</span>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    onKeyDown={(e) => e.key === "Enter" && handleEmail()}
-                  />
-                </label>
-                <button className="btn primary big full" disabled={busy} onClick={handleEmail}>
-                  {busy ? "Sending…" : "✨ Email me a magic link"}
+            <div style={{ marginTop: 14 }}>
+              {sent ? (
+                <div className="strike-note" style={{ justifyContent: "center" }}>
+                  📬 Magic link sent! Check your email to sync this profile.
+                </div>
+              ) : showEmail ? (
+                <div style={{ textAlign: "left" }}>
+                  <label className="field">
+                    <span>Email — sync across devices</span>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@example.com"
+                      onKeyDown={(e) => e.key === "Enter" && handleEmail()}
+                    />
+                  </label>
+                  <button className="btn full" disabled={busy} onClick={handleEmail}>
+                    {busy ? "Sending…" : "✨ Email me a magic link"}
+                  </button>
+                </div>
+              ) : (
+                <button
+                  className="btn ghost full"
+                  onClick={() => setShowEmail(true)}
+                  style={{ fontSize: 14 }}
+                >
+                  Have an email? Sync across devices →
                 </button>
-              </div>
-            )
-          ) : (
-            <div style={{ marginTop: 16, textAlign: "left" }}>
-              <label className="field">
-                <span>Pick a name</span>
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="dopamine_enjoyer"
-                  onKeyDown={(e) => e.key === "Enter" && (playConfirm(), signInLocal(name))}
-                />
-              </label>
-              <button
-                className="btn primary big full"
-                onClick={() => {
-                  playConfirm();
-                  signInLocal(name);
-                }}
-              >
-                🎉 Start my whim profile
-              </button>
+              )}
               <p style={{ fontSize: 12, color: "var(--ink-soft)", fontWeight: 700, marginTop: 10 }}>
-                Saved on this device for now. Cross-device sign-in turns on once accounts go live.
+                Your profile saves to the cloud, tied to this browser. Add an email anytime to use
+                it on other devices.
               </p>
             </div>
+          ) : (
+            <p style={{ fontSize: 12, color: "var(--ink-soft)", fontWeight: 700, marginTop: 10 }}>
+              Saved on this device. Cloud sync turns on once Supabase keys are added.
+            </p>
           )}
         </div>
       </>

@@ -10,8 +10,9 @@ ads). Do these steps to turn on real accounts and real ad revenue.
    [`supabase/schema.sql`](../supabase/schema.sql), and **Run**. This creates the
    `profiles`, `daydreams`, and `drop_subscriptions` tables with row-level security
    and an auto-profile trigger.
-3. **Authentication → Providers → Email**: keep "Email" enabled (magic link works out
-   of the box). Optionally add Google/Apple later.
+3. **Authentication → Sign In / Providers → enable "Allow anonymous sign-ins."** This powers
+   the primary one-tap "Start my whim profile" flow (instant account, no email). Keep the
+   **Email** provider on too — it's the optional "sync across devices" magic-link upgrade.
 4. **Authentication → URL Configuration**: add your site URL (e.g.
    `https://uffer-vibecoder.github.io/whim/`) to **Redirect URLs**.
 5. **Project Settings → API**: copy the **Project URL** and the **anon public** key.
