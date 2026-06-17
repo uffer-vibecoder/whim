@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../store/AuthContext";
 import { formatWindow } from "../lib/time";
@@ -10,6 +10,17 @@ export default function Account() {
   const [name, setName] = useState("");
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [urlError, setUrlError] = useState<string | null>(null);
+
+  // Surface any auth error Supabase appended to the redirect (query or hash).
+  useEffect(() => {
+    const fromHash = window.location.hash.includes("error")
+      ? window.location.hash.replace(/^#\/?/, "?")
+      : "";
+    const params = new URLSearchParams(window.location.search || fromHash);
+    const err = params.get("error_description") || params.get("error");
+    if (err) setUrlError(err.replace(/\+/g, " "));
+  }, []);
 
   async function handleEmail() {
     if (!email.trim()) return;
@@ -30,6 +41,15 @@ export default function Account() {
           <p style={{ color: "var(--ink-soft)", fontWeight: 700, marginTop: 0 }}>
             Save your daydream history and your "money saved by not buying" — across every visit.
           </p>
+
+          {urlError && (
+            <div
+              className="strike-note"
+              style={{ justifyContent: "center", marginBottom: 14, color: "var(--pink)" }}
+            >
+              ⚠️ {urlError}
+            </div>
+          )}
 
           {mode === "supabase" ? (
             sent ? (

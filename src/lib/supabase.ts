@@ -11,6 +11,13 @@ export const isSupabaseConfigured = Boolean(url && anonKey);
 
 export const supabase: SupabaseClient | null = isSupabaseConfigured
   ? createClient(url!, anonKey!, {
-      auth: { persistSession: true, autoRefreshToken: true },
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        // PKCE returns the magic-link token as a ?code= query param instead of a
+        // URL #hash, so it doesn't collide with the app's HashRouter.
+        flowType: "pkce",
+        detectSessionInUrl: true,
+      },
     })
   : null;
