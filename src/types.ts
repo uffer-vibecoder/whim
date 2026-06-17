@@ -14,6 +14,7 @@ export type Product = {
   perks: string[];
   secondhand?: boolean; // a one-of-a-kind thrifted find
   condition?: string; // flavor text for thrifted items, e.g. "Gently loved"
+  limited?: boolean; // a playful, self-aware "limited drop" (it comes back — it's free)
   image?: string; // Unsplash photo id, e.g. "photo-1602143407151-7111542de6e8"
 };
 

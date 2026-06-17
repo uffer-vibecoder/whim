@@ -29,7 +29,9 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link to={`/p/${product.id}`} className="card">
       <div className="thumb" style={{ background: product.bg }}>
-        {product.secondhand ? (
+        {product.limited ? (
+          <span className="deal limited">⏳ Limited</span>
+        ) : product.secondhand ? (
           <span className="deal thrift">♻️ Thrifted</span>
         ) : (
           discount > 0 && <span className="deal">-{discount}%</span>

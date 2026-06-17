@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useTitle } from "../lib/useTitle";
 
 export default function About() {
+  useTitle("About");
   return (
     <>
       <Link to="/" className="back">

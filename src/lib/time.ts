@@ -42,6 +42,19 @@ export function realDurationFor(windowSeconds: number): number {
   return 26;
 }
 
+// Rolling "limited drop" countdown: each limited product counts down to its own
+// end inside a repeating 6-hour window, so it always shows a plausible timer and
+// quietly resets (because — wink — it always comes back, and it's free).
+const DROP_WINDOW_MS = 6 * 60 * 60 * 1000;
+
+export function limitedEndsAt(seed: string): number {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  const offset = h % DROP_WINDOW_MS;
+  const now = Date.now();
+  return Math.ceil((now + offset) / DROP_WINDOW_MS) * DROP_WINDOW_MS - offset;
+}
+
 /** A random window between the min and max, rounded to a tidy value. */
 export function randomWindow(rand: number): number {
   const raw = MIN_WINDOW + rand * (MAX_WINDOW - MIN_WINDOW);

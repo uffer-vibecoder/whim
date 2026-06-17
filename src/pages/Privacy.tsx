@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useTitle } from "../lib/useTitle";
 
 const UPDATED = "June 17, 2026";
 
 export default function Privacy() {
+  useTitle("Privacy Policy");
   return (
     <>
       <Link to="/" className="back">

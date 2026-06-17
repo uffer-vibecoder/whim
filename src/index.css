@@ -779,6 +779,34 @@ button {
   background: linear-gradient(90deg, #2f8f6b, #3dd6c4);
 }
 
+/* ---------- Limited drop ---------- */
+.deal.limited {
+  background: linear-gradient(90deg, var(--orange), var(--pink));
+}
+.limited-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #fff0ec, #fff0f7);
+  border: 2px solid var(--orange);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin: 14px 0;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ink);
+}
+.limited-pulse {
+  font-size: 18px;
+  animation: gspulse 1.4s ease-in-out infinite;
+}
+.limited-wink {
+  display: block;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
 /* ---------- Ad slot ---------- */
 .ad {
   position: relative;

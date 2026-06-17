@@ -38,6 +38,7 @@ const UNSPLASH: Record<string, string> = {
   hammock: "photo-1519095614420-850b5671ac7f",
   "lava-lamp": "photo-1574882225022-5f45b99d4966",
   "waffle-maker": "photo-1562376552-0d160a2f238d",
+  "fidget-spinner": "photo-1497040059851-bd928f851c43",
 };
 
 /** Build a sized Unsplash image URL from a photo id. */
@@ -177,6 +178,7 @@ const baseProducts: Product[] = [
     blurb:
       "Shoots adorable instant prints at a heroic cost-per-photo. Every shot is a surprise, mostly a thumb. Aesthetic, regardless.",
     perks: ["Prints in 60 seconds", "Retro flash", "Fridge-magnet ready"],
+    limited: true,
   },
   {
     id: "plant",
@@ -288,6 +290,7 @@ const baseProducts: Product[] = [
     blurb:
       "A curated box of international snacks you can't pronounce. Pure surprise-and-delight dopamine, individually wrapped.",
     perks: ["New crate every drop", "Spicy & sweet mix", "Unboxing is the whole point"],
+    limited: true,
   },
   {
     id: "cat-tower",
@@ -551,6 +554,7 @@ const baseProducts: Product[] = [
     blurb:
       "Big slow blobs of glowing wax, rising and falling forever. Does nothing useful. Will absolutely make you stare at it for 20 minutes. Worth every cent.",
     perks: ["Mesmerizing glow", "Retro centerpiece", "Better than your phone"],
+    limited: true,
   },
   {
     id: "waffle-maker",
@@ -580,6 +584,36 @@ const baseProducts: Product[] = [
     blurb:
       "A plush calming donut bed so cozy your dog will adopt it as their entire personality. You will also try to sit in it. Don't. (Do.)",
     perks: ["Calming bolster", "Machine washable", "Dog-tested, nap-approved"],
+  },
+  {
+    id: "fidget-spinner",
+    name: "Throwback Fidget Spinner",
+    tagline: "2017 called, you answered",
+    emoji: "🌀",
+    price: 9,
+    was: 15,
+    rating: 4.5,
+    reviewCount: 30122,
+    category: "Fun",
+    bg: "linear-gradient(135deg,#a1c4fd 0%,#c2e9fb 100%)",
+    blurb:
+      "A weighted three-prong spinner that whirs for an unreasonably satisfying length of time. Cures nothing, fixes nothing, feels incredible between two fingers.",
+    perks: ["Whirs forever", "Pocket-sized", "Peak nostalgia"],
+    limited: true,
+  },
+  {
+    id: "fidget-pad",
+    name: "Click-Clack Fidget Pad",
+    tagline: "Every button, zero purpose",
+    emoji: "🎛️",
+    price: 12,
+    rating: 4.7,
+    reviewCount: 18740,
+    category: "Fun",
+    bg: "linear-gradient(135deg,#d4fc79 0%,#96e6a1 100%)",
+    blurb:
+      "A little controller of switches, dials, and a glorious clicky joystick that do absolutely nothing. Your hands will not put it down. Your brain says thank you.",
+    perks: ["Clicks, rolls, glides", "Silent + clicky sides", "Meeting-survival gear"],
   },
 ];
 

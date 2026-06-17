@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { productById } from "../data/products";
 import { reviewsFor } from "../data/reviews";
+import { useTitle } from "../lib/useTitle";
+import LimitedCountdown from "../components/LimitedCountdown";
 import { useCart } from "../store/CartContext";
 import { playPop, popConfetti } from "../lib/dopamine";
 import ProductImage from "../components/ProductImage";
@@ -12,6 +14,7 @@ export default function ProductPage() {
   const { add } = useCart();
   const navigate = useNavigate();
   const [added, setAdded] = useState(false);
+  useTitle(product?.name);
 
   if (!product) {
     return (
@@ -77,6 +80,8 @@ export default function ProductPage() {
               </span>
             )}
           </div>
+
+          {product.limited && <LimitedCountdown id={product.id} />}
 
           <p style={{ fontWeight: 600, lineHeight: 1.5, color: "var(--ink-soft)" }}>
             {product.blurb}
