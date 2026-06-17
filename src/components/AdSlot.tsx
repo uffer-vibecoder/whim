@@ -13,6 +13,11 @@ let adsenseScriptLoaded = false;
 
 function loadAdsenseScript(publisher: string) {
   if (adsenseScriptLoaded || typeof document === "undefined") return;
+  // The verification script is already in index.html <head>; don't double-load it.
+  if (document.querySelector('script[src*="adsbygoogle.js"]')) {
+    adsenseScriptLoaded = true;
+    return;
+  }
   adsenseScriptLoaded = true;
   const s = document.createElement("script");
   s.async = true;
