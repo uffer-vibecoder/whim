@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
 import AdSlot from "../components/AdSlot";
+import GlobalSaver from "../components/GlobalSaver";
 
 const floaties = [
   { e: "🛍️", top: "12%", left: "70%", d: "0s" },
@@ -22,6 +23,8 @@ export default function Storefront() {
 
   return (
     <>
+      <GlobalSaver />
+
       <section className="hero">
         <div className="floaties">
           {floaties.map((f, i) => (
