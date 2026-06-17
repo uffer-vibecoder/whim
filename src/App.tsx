@@ -10,6 +10,7 @@ import CartPage from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Tracking from "./pages/Tracking";
 import About from "./pages/About";
+import Privacy from "./pages/Privacy";
 import Account from "./pages/Account";
 
 function Header() {
@@ -99,6 +100,7 @@ export default function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/tracking" element={<Tracking />} />
           <Route path="/about" element={<About />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/account" element={<Account />} />
         </Routes>
       </main>
@@ -107,6 +109,9 @@ export default function App() {
         <nav style={{ marginTop: 20, display: "flex", gap: 18, justifyContent: "center", flexWrap: "wrap" }}>
           <Link to="/about" style={{ fontWeight: 800, color: "var(--purple)" }}>
             About
+          </Link>
+          <Link to="/privacy" style={{ fontWeight: 800, color: "var(--purple)" }}>
+            Privacy
           </Link>
           <a
             href="mailto:hello@trywhim.fun"
