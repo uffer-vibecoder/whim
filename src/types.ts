@@ -8,6 +8,7 @@ export type Product = {
   rating: number;
   reviewCount: number;
   category: string;
+  brand?: string; // whim house "dupe" brand
   bg: string; // gradient for the product tile
   blurb: string;
   perks: string[];

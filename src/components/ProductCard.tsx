@@ -38,6 +38,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <ProductImage product={product} w={600} h={480} emojiSize={76} />
       </div>
       <div className="body">
+        {product.brand && <div className="brand-label">{product.brand}</div>}
         <div className="name">{product.name}</div>
         <div className="tagline">{product.tagline}</div>
         <div className="stars">

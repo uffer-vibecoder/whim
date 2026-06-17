@@ -322,6 +322,13 @@ button {
   gap: 6px;
   flex: 1;
 }
+.brand-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--purple);
+}
 .card .name {
   font-family: "Baloo 2", sans-serif;
   font-weight: 700;

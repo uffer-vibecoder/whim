@@ -1,4 +1,5 @@
 import type { Product } from "../types";
+import { brandFor } from "./brands";
 
 // Curated, verified Unsplash photo ids per product (real product photography).
 const UNSPLASH: Record<string, string> = {
@@ -30,6 +31,13 @@ const UNSPLASH: Record<string, string> = {
   succulents: "photo-1560244691-c59cfcc671fc",
   "yoga-mat": "photo-1763004871583-4183d64096b1",
   "thrift-typewriter": "photo-1530819568329-97653eafbbfa",
+  "charge-pad": "photo-1591290619618-904f6dd935e3",
+  "power-brick": "photo-1585995603413-eb35b5f4a50b",
+  "bucket-hat": "photo-1679324351719-f23312611c50",
+  "cold-brew": "photo-1780145769346-5e81bfd429ca",
+  hammock: "photo-1519095614420-850b5671ac7f",
+  "lava-lamp": "photo-1574882225022-5f45b99d4966",
+  "waffle-maker": "photo-1562376552-0d160a2f238d",
 };
 
 /** Build a sized Unsplash image URL from a photo id. */
@@ -457,10 +465,127 @@ const baseProducts: Product[] = [
     secondhand: true,
     condition: "Vintage · fully working",
   },
+  {
+    id: "charge-pad",
+    name: "Hover Charge Pad",
+    tagline: "Set it down, feel powerful",
+    emoji: "🔌",
+    price: 39,
+    was: 55,
+    rating: 4.6,
+    reviewCount: 7420,
+    category: "Tech",
+    bg: "linear-gradient(135deg,#a1c4fd 0%,#c2e9fb 100%)",
+    blurb:
+      "A sleek wireless pad that charges your phone if you set it down at exactly the right angle. You won't. But it looks incredible on the nightstand.",
+    perks: ["15W fast charge", "Glowy status ring", "Cable-free smugness"],
+  },
+  {
+    id: "power-brick",
+    name: "Pocket Power Brick",
+    tagline: "Anxiety insurance, 20,000mAh",
+    emoji: "🔋",
+    price: 49,
+    rating: 4.8,
+    reviewCount: 13290,
+    category: "Tech",
+    bg: "linear-gradient(135deg,#d4fc79 0%,#96e6a1 100%)",
+    blurb:
+      "Enough backup juice to charge your phone five times and your friends' phones zero times. The brick of preparedness you'll always forget to bring.",
+    perks: ["Charges everything", "USB-C in/out", "Heavy = trustworthy"],
+  },
+  {
+    id: "bucket-hat",
+    name: "Cloud Bucket Hat",
+    tagline: "Instant 12% cooler",
+    emoji: "🧢",
+    price: 26,
+    rating: 4.7,
+    reviewCount: 5610,
+    category: "Style",
+    bg: "linear-gradient(135deg,#fbc2eb 0%,#a6c1ee 100%)",
+    blurb:
+      "A soft, packable bucket hat that says 'I'm relaxed and possibly going to a festival.' Works for sun, drizzle, and pretending you have plans.",
+    perks: ["Packs flat", "Reversible", "Effortless main-character energy"],
+  },
+  {
+    id: "cold-brew",
+    name: "Cold Brew Tower",
+    tagline: "Coffee, but make it patient",
+    emoji: "🧋",
+    price: 58,
+    was: 79,
+    rating: 4.7,
+    reviewCount: 4180,
+    category: "Kitchen",
+    bg: "linear-gradient(135deg,#f6d365 0%,#fda085 100%)",
+    blurb:
+      "A glass drip tower that turns 12 hours and a lot of patience into one cup of very smooth coffee. The science-lab look alone is the whole purchase.",
+    perks: ["Slow-drip ritual", "Tastes weirdly fancy", "Counter showpiece"],
+  },
+  {
+    id: "hammock",
+    name: "Sky Nap Hammock",
+    tagline: "A bed that thinks it's outdoors",
+    emoji: "🌳",
+    price: 45,
+    rating: 4.9,
+    reviewCount: 9120,
+    category: "Outdoors",
+    bg: "linear-gradient(135deg,#96fbc4 0%,#f9f586 100%)",
+    blurb:
+      "Ultralight parachute nylon that packs to the size of a grapefruit. You'll buy it for the wilderness and string it between two chairs indoors. Bliss.",
+    perks: ["Holds 400 lbs", "Packs tiny", "Instant nap location"],
+  },
+  {
+    id: "lava-lamp",
+    name: "Lava Lounge Lamp",
+    tagline: "Hypnosis you can plug in",
+    emoji: "🌋",
+    price: 34,
+    was: 44,
+    rating: 4.8,
+    reviewCount: 11870,
+    category: "Vibes",
+    bg: "linear-gradient(135deg,#ff9a9e 0%,#fecfef 100%)",
+    blurb:
+      "Big slow blobs of glowing wax, rising and falling forever. Does nothing useful. Will absolutely make you stare at it for 20 minutes. Worth every cent.",
+    perks: ["Mesmerizing glow", "Retro centerpiece", "Better than your phone"],
+  },
+  {
+    id: "waffle-maker",
+    name: "Bubble Waffle Maker",
+    tagline: "Breakfast with extra craters",
+    emoji: "🧇",
+    price: 42,
+    rating: 4.6,
+    reviewCount: 6340,
+    category: "Kitchen",
+    bg: "linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%)",
+    blurb:
+      "Flip it, fill it, forget it's preheating and slightly burn the first one. Makes adorable bubble waffles you'll photograph more than you'll eat.",
+    perks: ["Nonstick plates", "Flip-to-cook", "Brunch flex unlocked"],
+  },
+  {
+    id: "dog-bed",
+    name: "Donut Dog Cloud",
+    tagline: "Your dog's sleep number bed",
+    emoji: "🐕",
+    price: 69,
+    was: 99,
+    rating: 4.9,
+    reviewCount: 15330,
+    category: "Pets",
+    bg: "linear-gradient(135deg,#fddb92 0%,#d1fdff 100%)",
+    blurb:
+      "A plush calming donut bed so cozy your dog will adopt it as their entire personality. You will also try to sit in it. Don't. (Do.)",
+    perks: ["Calming bolster", "Machine washable", "Dog-tested, nap-approved"],
+  },
 ];
 
 export const products: Product[] = baseProducts.map((p) => ({
   ...p,
+  brand: brandFor(p.category, p.brand),
   image: UNSPLASH[p.id],
 }));
 

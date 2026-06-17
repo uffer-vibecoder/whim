@@ -51,7 +51,12 @@ export default function ProductPage() {
             <span className="s">★★★★★</span>
             {product.rating} · {product.reviewCount.toLocaleString()} reviews
           </div>
-          <h1 style={{ fontSize: 34, margin: "8px 0 4px" }}>{product.name}</h1>
+          {product.brand && (
+            <div className="brand-label" style={{ fontSize: 13, marginTop: 8 }}>
+              {product.brand}
+            </div>
+          )}
+          <h1 style={{ fontSize: 34, margin: "2px 0 4px" }}>{product.name}</h1>
           <div className="tagline" style={{ fontSize: 16 }}>
             {product.tagline}
           </div>
