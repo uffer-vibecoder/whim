@@ -52,6 +52,23 @@ the *thrill* of buying, never nudge people toward real overspending.
 
 ---
 
+## 🚀 Expansion — a family of "dopamine, no consequences" toys
+**Goal: expand brands & products.** whim (fake shopping) is the first of a family of
+playful sites that deliver the *thrill* of a high-stakes behavior with **zero real-world
+harm**. Each shares the ethos, the brand kit, and the accounts/savings backbone.
+
+- **Fake stock market** — "all the trading rush, none of the losses." Buy/sell pretend
+  stocks, watch a live ticker + candlestick chart, build a paper portfolio, get the
+  green-number dopamine. Tally "money you *didn't* lose day-trading."
+- **Fake sports betting** — "all the action, none of the losses." Place pretend bets on
+  real or invented matchups, live odds + a bet slip, watch results roll in. Especially
+  on-ethos: scratches the gambling itch with **no money at risk** (a genuinely useful,
+  harm-reduction angle — never real wagering).
+
+**Shared platform to build once, reuse:** brand system, Supabase accounts + history,
+the worldwide live "saved/avoided" tracker, the Sponsored ad slot, drops/notifications.
+Open question: one umbrella brand with sub-apps, or distinct brands sharing a backend?
+
 ## 💡 Backlog / ideas
 - **Humorous one-star reviews** — mix in a few funny, over-dramatic 1★ reviews on product
   pages alongside the glowing ones (e.g. "arrived imaginary, 0 stars — wait, that's the
